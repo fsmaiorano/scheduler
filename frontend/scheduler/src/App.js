@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 
+import Authentication from "./pages/Authentication";
+
 class App extends Component {
     render() {
         return (
             <div className="App">
-                <h1>Work</h1>
+                <Authentication />
             </div>
         );
     }
