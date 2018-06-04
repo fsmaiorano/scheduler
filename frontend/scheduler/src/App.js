@@ -1,15 +1,9 @@
-import React, { Component } from "react";
+import React from 'react';
 
-import Authentication from "./pages/Authentication";
+import Authentication from './pages/Authentication';
 
-class App extends Component {
-    render() {
-        return (
-            <div className="App">
-                <Authentication />
-            </div>
-        );
-    }
-}
+import './styles/global';
+
+const App = () => <Authentication />;
 
 export default App;
