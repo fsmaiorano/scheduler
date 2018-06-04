@@ -20,8 +20,11 @@ export const Container = styled.div`
     input {
       height: 50px;
       border: none;
-      text-align: center;
+      text-align: left;
       font-size: 17px;
+
+      border-bottom: 1px solid black;
+      background-color: #f5f5f5;
     }
 
     input {
@@ -32,6 +35,10 @@ export const Container = styled.div`
       display: inline-block;
       height: 50px;
       border: none;
+      cursor: pointer;
+      &:hover {
+        background-color: #8c8989;
+      }
     }
   }
 `;

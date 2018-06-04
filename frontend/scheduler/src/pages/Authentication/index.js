@@ -6,8 +6,8 @@ const Authentication = () => (
   <Container>
     <h1>Scheduler</h1>
     <form>
-      <input type="text" placeholder="Login" />
-      <input type="text" placeholder="Senha" />
+      <input type="email" placeholder="Login" />
+      <input type="password" placeholder="Senha" />
       <button type="submit">Entrar</button>
     </form>
   </Container>
