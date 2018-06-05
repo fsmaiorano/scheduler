@@ -12,7 +12,7 @@ injectGlobal`
 body {
     background-color: #F5F5F5;
     text-align: center;
-    font-family: sans-serif;
+    font-family: 'Lato',sans-serif;
     text-rendering: optimizeLegibility !important;
     -webkit-font-smoothing: antialiase !important;
 }

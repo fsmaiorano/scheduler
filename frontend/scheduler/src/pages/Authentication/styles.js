@@ -21,8 +21,8 @@ export const Container = styled.div`
       height: 50px;
       border: none;
       text-align: left;
-      font-size: 17px;
-
+      font-size: 22px;
+      font-family: 'Lato', sans-serif;
       border-bottom: 1px solid black;
       background-color: #f5f5f5;
     }
