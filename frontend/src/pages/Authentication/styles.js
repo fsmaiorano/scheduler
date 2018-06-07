@@ -12,6 +12,20 @@ export const Container = styled.div`
     text-transform: lowercase;
   }
 
+  a:link,
+  a:visited {
+    float: right;
+    color: #797775;
+    padding: 5px;
+    margin-top: 5px;
+    text-decoration: none;
+
+    &:hover {
+      color: #333;
+      background-color: #dddddd;
+    }
+  }
+
   form {
     width: 500px;
     display: flex;
