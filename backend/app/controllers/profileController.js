@@ -12,7 +12,11 @@ module.exports = {
             });
 
             if (!user) {
-                res.status(400).json({ error: "User not found" });
+                res.status(400).json({
+                    success: false,
+                    msg: "User not found",
+                    result: null
+                });
             }
 
             if (await user.compareHash(oldPassword)) {
@@ -22,9 +26,17 @@ module.exports = {
                     { password: password, name: name },
                     { new: true }
                 );
-                res.status(200).json(updatedUser);
+                res.status(200).json({
+                    success: true,
+                    msg: "User updated with success",
+                    result: { updatedUser }
+                });
             } else {
-                res.status(400).json({ error: "Password does not match" });
+                res.status(400).json({
+                    success: false,
+                    msg: "Password does not match",
+                    result: null
+                });
             }
         } catch (error) {
             res.status(400).json({ error: "User not found" });
