@@ -11,6 +11,6 @@ routes.post("/signup", controllers.authController.signup);
 routes.post("/signin", controllers.authController.signin);
 
 // Auth Middleware
-routes.use(authMiddleware);
+// routes.use(authMiddleware);
 
 module.exports = routes;
