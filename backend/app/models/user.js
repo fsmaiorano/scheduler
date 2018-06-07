@@ -44,6 +44,10 @@ UserSchema.methods = {
         return jwt.sign({ id: this.id }, authConfig.secret, {
             expiresIn: 86400
         });
+    },
+
+    async updatePassword(newPassword) {
+        return await bcrypt.hash(newPassword, 8);
     }
 };
 

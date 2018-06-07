@@ -10,7 +10,10 @@ const authMiddleware = require("./middlewares/auth");
 routes.post("/signup", controllers.authController.signup);
 routes.post("/signin", controllers.authController.signin);
 
+// Profile
+routes.post("/update", authMiddleware, controllers.profileController.update);
+
 // Auth Middleware
-routes.use(authMiddleware);
+// routes.use(authMiddleware);
 
 module.exports = routes;
