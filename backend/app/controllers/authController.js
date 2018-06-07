@@ -20,7 +20,7 @@ module.exports = {
             success: true,
             msg: "User created with success",
             result: {
-                user,
+                user: user,
                 token: user.generateToken()
             }
         });
