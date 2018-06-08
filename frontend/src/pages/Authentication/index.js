@@ -11,11 +11,13 @@ class Authentication extends Component {
   state = {
     email: '',
     password: '',
+    isLoading: false,
   };
 
   doLogin = async (e) => {
     try {
       e.preventDefault();
+      this.setState({ isLoading: true });
       const { data } = await signin({
         email: this.state.email,
         password: this.state.password,
@@ -26,7 +28,9 @@ class Authentication extends Component {
       } else {
         console.log('error');
       }
+      this.setState({ isLoading: false });
     } catch (error) {
+      this.setState({ isLoading: false });
       console.log(error);
     }
   };
@@ -46,7 +50,9 @@ class Authentication extends Component {
             placeholder="Senha"
             onChange={e => this.setState({ password: e.target.value })}
           />
-          <button type="submit">Entrar</button>
+          <button type="submit">
+            {this.state.isLoading ? <i className="fa fa-spinner fa-pulse" /> : 'Entrar'}
+          </button>
         </form>
         <a href="/account">Criar uma conta</a>
       </Container>
