@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
+import { PropTypes } from 'prop-types';
 import { Container } from './styles';
 import { signin } from './../../services/authentication';
 
 class Authentication extends Component {
+  static propTypes = {
+    history: PropTypes.func.isRequired,
+  };
+
   state = {
     email: '',
     password: '',
   };
 
   doLogin = async (e) => {
-    // const x = await api.get('/api/signin', {
-    //   email: this.state.email,
-    //   password: this.state.password,
-    // });
-
     try {
       e.preventDefault();
       const { data } = await signin({
