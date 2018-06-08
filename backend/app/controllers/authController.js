@@ -6,8 +6,8 @@ module.exports = {
     async signup(req, res, next) {
         const { email, password } = req.body;
 
-        if (await User.findOne({ $or: [{ email }, { password }] })) {
-            res.status(400).json({
+        if (await User.findOne({ email })) {
+            return res.status(400).json({
                 success: false,
                 msg: "User already exists",
                 result: null
@@ -32,7 +32,7 @@ module.exports = {
         const user = await User.findOne({ email });
 
         if (!user) {
-            res.status(400).json({
+            return res.status(400).json({
                 success: false,
                 msg: "User not found",
                 result: null

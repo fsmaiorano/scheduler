@@ -1,26 +1,24 @@
 import React, { Component } from 'react';
+import { signup } from './../../../../services/authentication';
 import { Container } from './styles';
-import { signin } from './../../services/authentication';
 
-class Authentication extends Component {
+class NewAccount extends Component {
   state = {
-    email: '',
+    name: '',
+    username: '',
     password: '',
+    email: '',
   };
 
-  doLogin = async (e) => {
-    // const x = await api.get('/api/signin', {
-    //   email: this.state.email,
-    //   password: this.state.password,
-    // });
-
+  createAccount = async (e) => {
     try {
       e.preventDefault();
-      const { data } = await signin({
+      const { data } = await signup({
+        name: this.state.name,
+        username: this.state.username,
         email: this.state.email,
         password: this.state.password,
       });
-
       if (data.success) {
         this.props.history.goBack();
       } else {
@@ -34,8 +32,18 @@ class Authentication extends Component {
   render() {
     return (
       <Container>
-        <h1>Scheduler</h1>
-        <form onSubmit={this.doLogin}>
+        <h1>Create Account</h1>
+        <form onSubmit={this.createAccount}>
+          <input
+            type="text"
+            placeholder="Nome"
+            onChange={e => this.setState({ name: e.target.value })}
+          />
+          <input
+            type="text"
+            placeholder="Nome de Usuário"
+            onChange={e => this.setState({ username: e.target.value })}
+          />
           <input
             type="email"
             placeholder="E-mail"
@@ -46,12 +54,12 @@ class Authentication extends Component {
             placeholder="Senha"
             onChange={e => this.setState({ password: e.target.value })}
           />
-          <button type="submit">Entrar</button>
+          <button type="submit">Cadastrar</button>
         </form>
-        <a href="/account">Criar uma conta</a>
+        <a href="/">Voltar</a>
       </Container>
     );
   }
 }
 
-export default Authentication;
+export default NewAccount;

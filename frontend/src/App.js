@@ -1,9 +1,13 @@
 import React from 'react';
-
-import Authentication from './pages/Authentication';
+import { BrowserRouter } from 'react-router-dom';
+import Main from './pages/Main';
 
 import './styles/global';
 
-const App = () => <Authentication />;
+const App = () => (
+  <BrowserRouter>
+    <Main />
+  </BrowserRouter>
+);
 
 export default App;

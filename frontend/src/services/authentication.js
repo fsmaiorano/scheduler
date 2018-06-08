@@ -1,18 +1,15 @@
 import api from './api';
 
-export async function signin(post) {
-  console.log(post);
+export const signin = async (post) => {
   const response = await api.post('/api/signin', post);
   return response;
-}
+};
 
-export async function signup(post) {
-  console.log(post);
-  const response = api.post('/api/signup', post);
+export const signup = async (post) => {
+  const response = await api.post('/api/signup', post);
+  return response;
 
   //   const response = api.post('/api/signup', post, {
   //     headers: { Authorization: '' },
   //   });
-
-  return response;
-}
+};
