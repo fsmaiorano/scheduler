@@ -50,8 +50,12 @@ module.exports = {
         req.user = user;
 
         return res.json({
-            user,
-            token: user.generateToken()
+            success: true,
+            msg: "User logged",
+            result: {
+                user,
+                token: user.generateToken()
+            }
         });
     }
 };

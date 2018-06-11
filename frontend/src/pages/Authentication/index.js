@@ -24,13 +24,17 @@ class Authentication extends Component {
       });
 
       if (data.success) {
-        this.props.history.goBack();
+        sessionStorage.setItem('user', data.result.user);
+        sessionStorage.setItem('token', data.result.token);
+        this.props.history.push('/calendar');
       } else {
+        // TODO - show error
         console.log('error');
       }
       this.setState({ isLoading: false });
     } catch (error) {
       this.setState({ isLoading: false });
+      // TODO - show error
       console.log(error);
     }
   };
