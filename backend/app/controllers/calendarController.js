@@ -5,8 +5,6 @@ const Calendar = mongoose.model("Calendar");
 
 module.exports = {
     async add(req, res, next) {
-        const { title, location, date, hour } = req.body;
-
         let user = await User.findById(req.userId);
 
         if (!user) {
@@ -18,10 +16,7 @@ module.exports = {
         }
 
         let schedule = {
-            title,
-            location,
-            date,
-            hour,
+            ...req.body,
             user
         }
 
@@ -40,7 +35,5 @@ module.exports = {
             msg: "Schedule created with success",
             result: newSchedule
         });
-
-
     }
 };
