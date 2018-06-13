@@ -14,7 +14,7 @@ routes.post("/signin", controllers.authController.signin);
 routes.post("/update", authMiddleware, controllers.profileController.update);
 
 // Calendar
-routes.post("/calendar/add", controllers.calendarController.add);
+routes.post("/calendar/add", authMiddleware, controllers.calendarController.add);
 
 // Auth Middleware
 // routes.use(authMiddleware);
