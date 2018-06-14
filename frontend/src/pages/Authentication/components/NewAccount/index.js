@@ -27,7 +27,7 @@ class NewAccount extends Component {
         password: this.state.password,
       });
       if (data.success) {
-        sessionStorage.setItem('token', data.result.token);
+        sessionStorage.setItem('token', `Bearer ${data.result.token}`);
         this.props.history.goBack();
       } else {
         console.log('error');

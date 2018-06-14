@@ -25,7 +25,7 @@ class Authentication extends Component {
 
       if (data.success) {
         sessionStorage.setItem('user', data.result.user);
-        sessionStorage.setItem('token', data.result.token);
+        sessionStorage.setItem('token', `Bearer ${data.result.token}`);
         this.props.history.push('/calendar');
       } else {
         // TODO - show error
