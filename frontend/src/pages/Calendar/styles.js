@@ -1,14 +1,24 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin: 0 auto;
-  transform: translate(-50%, -50%);
-`;
-
 export const ContainerCalendar = styled.div`
   margin: 0 auto;
-  width: 20%;
+  width: 300px;
+`;
+
+export const ContainerTime = styled.div`
+  margin: 10px auto;
+`;
+
+export const Input = styled.input`
+  border: none;
+  display: block;
+  margin: 10px auto;
+  padding: 22px;
+  font-size: 15px;
+  width: 300px;
+  min-width: 300px;
+`;
+
+export const Form = styled.form`
+  margin-top: 10px;
 `;
