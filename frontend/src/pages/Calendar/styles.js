@@ -14,7 +14,7 @@ export const Input = styled.input`
   display: block;
   margin: 10px auto;
   padding: 22px;
-  font-size: 15px;
+  font-size: 18px;
   width: 300px;
   min-width: 300px;
 `;
