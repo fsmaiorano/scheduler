@@ -8,8 +8,6 @@ import { ContainerCalendar } from './styles';
 
 class Calendar extends Component {
     state = {
-      date: new Date(),
-      time: new Date().toLocaleTimeString(),
       selectedDate: new Date().toLocaleDateString(),
       selectedTime: new Date().toLocaleTimeString(),
       title: '',
@@ -55,7 +53,7 @@ class Calendar extends Component {
             />
             <TimePicker
               onChange={this.onChangeTime}
-              value={this.state.time}
+              value={this.state.selectedTime}
             />
             <form onSubmit={this.addEvent}>
               <input type="text" placeholder="Nome do evento" onChange={e => this.setState({ title: e.target.value })} />
