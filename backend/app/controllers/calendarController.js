@@ -18,11 +18,11 @@ module.exports = {
         let schedule = {
             ...req.body,
             user
-        }
+        };
 
         let newSchedule = await Calendar.create(schedule);
 
-        if(newSchedule.errors) {
+        if (newSchedule.errors) {
             return res.json({
                 success: false,
                 msg: "Outch!",
@@ -34,6 +34,26 @@ module.exports = {
             success: true,
             msg: "Schedule created with success",
             result: newSchedule
+        });
+    },
+
+    async getEvents(req, res, next) {
+        let user = await User.findById(req.userId);
+
+        if (!user) {
+            return res.json({
+                success: false,
+                msg: "Token invalid",
+                result: null
+            });
+        }
+
+        let events = await Calendar.find({ user: user });
+
+        return res.json({
+            success: true,
+            msg: `Event of ${user.name}`,
+            result: events
         });
     }
 };
