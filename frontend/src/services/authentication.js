@@ -8,8 +8,4 @@ export const signin = async (post) => {
 export const signup = async (post) => {
   const response = await api.post('/api/signup', post);
   return response;
-
-  //   const response = api.post('/api/signup', post, {
-  //     headers: { Authorization: '' },
-  //   });
 };

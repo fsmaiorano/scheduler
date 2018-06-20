@@ -6,3 +6,10 @@ export const add = async (post) => {
   });
   return response;
 };
+
+export const getEvents = async () => {
+  const response = await api.get('/api/calendar/getEvents', {
+    headers: { Authorization: sessionStorage.getItem('token') },
+  });
+  return response;
+};

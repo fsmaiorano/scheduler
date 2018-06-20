@@ -2,24 +2,50 @@ import React, { Component } from 'react';
 import ReactCalendar from 'react-calendar';
 import TimePicker from 'react-time-picker';
 
-import { add } from '../../services/calendar';
-
+import { add, getEvents } from '../../services/calendar';
 import { ContainerCalendar, ContainerTime, Input, Form } from './styles';
+
+import ListEvents from './components/ListEvents';
 
 class Calendar extends Component {
   state = {
     selectedDate: new Date().toLocaleDateString(),
     selectedTime: new Date().toLocaleTimeString(),
+    selectedEvents: [],
     title: '',
     location: '',
+    events: [],
   };
 
+  componentDidMount() {
+    this.getEvents();
+  }
+
+
   onChangeDate = (date) => {
-    this.setState({ selectedDate: date.toLocaleDateString() });
+    const formatedDate = date.toLocaleDateString();
+
+    if (this.state.events.length > 0) {
+      const events = this.state.events.filter(ev => ev.date === formatedDate);
+      this.setState({ selectedEvents: events });
+    }
+
+    this.setState({ selectedDate: formatedDate });
   };
 
   onChangeTime = (time) => {
     this.setState({ selectedTime: time });
+  };
+
+  getEvents = async () => {
+    const response = await getEvents();
+    if (response.data.success) {
+      this.setEvents(response.data.result);
+    }
+  }
+
+  setEvents = (events) => {
+    this.setState({ events });
   };
 
   addEvent = async (e) => {
@@ -35,7 +61,11 @@ class Calendar extends Component {
       hour: selectedTime,
     };
 
-    const { data } = await add(newEvent);
+    await add(newEvent);
+    const { events, selectedEvents } = this.state;
+    events.push(newEvent);
+    selectedEvents.push(newEvent);
+    this.setState({ events, selectedEvents });
   };
 
   render() {
@@ -65,6 +95,9 @@ class Calendar extends Component {
           />
           <button type="submit">Cadastrar</button>
         </Form>
+        {this.state.selectedEvents.length > 0 ? (
+          <ListEvents events={this.state.selectedEvents} />
+        ) : null}
       </section>
     );
   }
