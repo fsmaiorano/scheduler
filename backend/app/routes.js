@@ -16,8 +16,6 @@ routes.post("/update", authMiddleware, controllers.profileController.update);
 // Calendar
 routes.post("/calendar/add", authMiddleware, controllers.calendarController.add);
 routes.get("/calendar/getEvents", authMiddleware, controllers.calendarController.getEvents);
-
-// Auth Middleware
-// routes.use(authMiddleware);
+routes.get("/calendar/delete/:id", authMiddleware, controllers.calendarController.delete);
 
 module.exports = routes;
