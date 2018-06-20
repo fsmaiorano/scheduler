@@ -12,7 +12,7 @@ module.exports = {
             });
 
             if (!user) {
-                return res.status(400).json({
+                return res.status(200).json({
                     success: false,
                     msg: "User not found",
                     result: null
@@ -32,14 +32,14 @@ module.exports = {
                     result: { updatedUser }
                 });
             } else {
-                return res.status(400).json({
+                return res.status(200).json({
                     success: false,
                     msg: "Password does not match",
                     result: null
                 });
             }
         } catch (error) {
-            res.status(400).json({ error: "User not found" });
+            res.status(200).json({ error: "User not found" });
         }
     }
 };

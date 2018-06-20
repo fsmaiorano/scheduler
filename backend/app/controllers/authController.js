@@ -7,7 +7,7 @@ module.exports = {
         const { email, password } = req.body;
 
         if (await User.findOne({ email })) {
-            return res.status(400).json({
+            return res.status(200).json({
                 success: false,
                 msg: "User already exists",
                 result: null
@@ -32,7 +32,7 @@ module.exports = {
         const user = await User.findOne({ email });
 
         if (!user) {
-            return res.status(400).json({
+            return res.status(200).json({
                 success: false,
                 msg: "User not found",
                 result: null
@@ -40,7 +40,7 @@ module.exports = {
         }
 
         if (!(await user.compareHash(password))) {
-            return res.status(400).json({
+            return res.status(200).json({
                 success: false,
                 msg: "Invalid password",
                 result: null

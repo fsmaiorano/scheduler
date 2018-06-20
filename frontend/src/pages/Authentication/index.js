@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { Container } from './styles';
 import { signin } from './../../services/authentication';
+import Error from './../../components/Error';
 
 class Authentication extends Component {
   static propTypes = {
@@ -12,30 +13,28 @@ class Authentication extends Component {
     email: '',
     password: '',
     isLoading: false,
+    error: null,
   };
 
   doLogin = async (e) => {
     try {
       e.preventDefault();
       this.setState({ isLoading: true });
-      const { data } = await signin({
+      const response = await signin({
         email: this.state.email,
         password: this.state.password,
       });
 
-      if (data.success) {
-        sessionStorage.setItem('user', data.result.user);
-        sessionStorage.setItem('token', `Bearer ${data.result.token}`);
+      if (response.data.success) {
+        sessionStorage.setItem('user', response.data.result.user);
+        sessionStorage.setItem('token', `Bearer ${response.data.result.token}`);
         this.props.history.push('/calendar');
       } else {
-        // TODO - show error
-        console.log('error');
+        this.setState({ error: response.data.msg });
       }
       this.setState({ isLoading: false });
     } catch (error) {
-      this.setState({ isLoading: false });
-      // TODO - show error
-      console.log(error);
+      this.setState({ isLoading: false, error });
     }
   };
 
@@ -59,6 +58,8 @@ class Authentication extends Component {
           </button>
         </form>
         <a href="/account">Criar uma conta</a>
+
+        {this.state.error !== null ? <Error error={this.state.error} /> : null}
       </Container>
     );
   }
