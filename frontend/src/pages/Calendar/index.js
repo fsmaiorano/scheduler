@@ -85,6 +85,7 @@ class Calendar extends Component {
     return (
       <section>
         <h1>Schedule</h1>
+        <a href="/profile">Profile</a>
         <ContainerCalendar>
           <ReactCalendar
             onChange={this.onChangeDate}

@@ -26,7 +26,7 @@ class Authentication extends Component {
       });
 
       if (response.data.success) {
-        sessionStorage.setItem('user', response.data.result.user);
+        sessionStorage.setItem('user', JSON.stringify(response.data.result.user));
         sessionStorage.setItem('token', `Bearer ${response.data.result.token}`);
         this.props.history.push('/calendar');
       } else {
