@@ -1,12 +1,12 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 
-const ListEvents = ({ events }) => (
+const ListEvents = ({ events, destroy }) => (
   <div>
     {
         events && events.map(ev => (
-          <div>
-            {ev.title}
+          <div key={ev._id}>
+            {ev.title} <button onClick={() => destroy(ev)}> x</button>
           </div>
         ))
     }
@@ -20,7 +20,7 @@ ListEvents.prototype = {
     date: PropTypes.string.isRequired,
     hour: PropTypes.string.isRequired,
     user: PropTypes.string.isRequired,
-  }),
+  }).isRequired,
 };
 
 export default ListEvents;

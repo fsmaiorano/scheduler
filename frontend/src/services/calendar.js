@@ -13,3 +13,10 @@ export const getEvents = async () => {
   });
   return response;
 };
+
+export const destroy = async (eventId) => {
+  const response = await api.get(`/api/calendar/delete/${eventId}`, {
+    headers: { Authorization: sessionStorage.getItem('token') },
+  });
+  return response;
+};

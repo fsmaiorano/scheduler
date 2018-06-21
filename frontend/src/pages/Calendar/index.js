@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import ReactCalendar from 'react-calendar';
 import TimePicker from 'react-time-picker';
 
-import { add, getEvents } from '../../services/calendar';
+import { add, getEvents, destroy } from '../../services/calendar';
 import { ContainerCalendar, ContainerTime, Input, Form } from './styles';
 
 import ListEvents from './components/ListEvents';
+import Error from '../../components/Error';
 
 class Calendar extends Component {
   state = {
@@ -61,12 +62,25 @@ class Calendar extends Component {
       hour: selectedTime,
     };
 
-    await add(newEvent);
+    const response = await add(newEvent);
     const { events, selectedEvents } = this.state;
-    events.push(newEvent);
-    selectedEvents.push(newEvent);
-    this.setState({ events, selectedEvents });
+    events.push(response.data.result);
+    selectedEvents.push(response.data.result);
+    this.setState({
+      events, selectedEvents, title: '', location: '',
+    });
   };
+
+  destroyEvent = async (event) => {
+    console.log(event);
+    const response = await destroy(event._id);
+    if (!response.data.success) {
+      this.setState({ error: response.data.msg });
+    } else {
+      const { events, selectedEvents } = this.state;
+      this.setState({ events: events.filter(ev => ev._id !== event._id), selectedEvents: selectedEvents.filter(ev => ev._id !== event._id) });
+    }
+  }
 
   render() {
     return (
@@ -96,8 +110,10 @@ class Calendar extends Component {
           <button type="submit">Cadastrar</button>
         </Form>
         {this.state.selectedEvents.length > 0 ? (
-          <ListEvents events={this.state.selectedEvents} />
+          <ListEvents events={this.state.selectedEvents} destroy={this.destroyEvent} />
         ) : null}
+
+        {this.state.error !== null ? <Error error={this.state.error} /> : null}
       </section>
     );
   }
