@@ -34,7 +34,7 @@ class Authentication extends Component {
       }
       this.setState({ isLoading: false });
     } catch (error) {
-      this.setState({ isLoading: false, error });
+      this.setState({ isLoading: false, error: 'Try again...' });
     }
   };
 

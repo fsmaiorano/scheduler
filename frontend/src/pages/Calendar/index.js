@@ -72,7 +72,6 @@ class Calendar extends Component {
   };
 
   destroyEvent = async (event) => {
-    console.log(event);
     const response = await destroy(event._id);
     if (!response.data.success) {
       this.setState({ error: response.data.msg });
@@ -99,11 +98,13 @@ class Calendar extends Component {
         <Form onSubmit={this.addEvent}>
           <Input
             type="text"
+            value={this.state.title}
             placeholder="Nome do evento"
             onChange={e => this.setState({ title: e.target.value })}
           />
           <Input
             type="text"
+            value={this.state.location}
             placeholder="Local"
             onChange={e => this.setState({ location: e.target.value })}
           />
