@@ -29,7 +29,7 @@ module.exports = {
                 return res.status(200).json({
                     success: true,
                     msg: "User updated with success",
-                    result: { updatedUser }
+                    result: updatedUser
                 });
             } else {
                 return res.status(200).json({
