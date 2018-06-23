@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { signup } from './../../../../services/authentication';
 import { Container } from './styles';
+import Error from './../../../../components/Error';
 
 class NewAccount extends Component {
   static propTypes = {
@@ -14,6 +15,7 @@ class NewAccount extends Component {
     password: '',
     email: '',
     isLoading: false,
+    error: null,
   };
 
   createAccount = async (e) => {
@@ -30,12 +32,11 @@ class NewAccount extends Component {
         sessionStorage.setItem('token', `Bearer ${data.result.token}`);
         this.props.history.goBack();
       } else {
-        console.log('error');
+        this.setState({ error: data.msg });
       }
       this.setState({ isLoading: false });
     } catch (error) {
-      this.setState({ isLoading: false });
-      console.log(error);
+      this.setState({ isLoading: false, error: 'Try again...' });
     }
   };
 
@@ -69,6 +70,7 @@ class NewAccount extends Component {
           </button>
         </form>
         <a href="/">Voltar</a>
+        {this.state.error !== null ? <Error error={this.state.error} /> : null}
       </Container>
     );
   }

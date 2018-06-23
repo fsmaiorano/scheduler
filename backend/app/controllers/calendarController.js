@@ -15,6 +15,18 @@ module.exports = {
             });
         }
 
+        let events = await Calendar.find({ user: user });
+
+        isSameSchedule = events.filter(ev => ev.hour === req.body.hour);
+
+        if (isSameSchedule.length > 0) {
+            return res.status(200).json({
+                success: false,
+                msg: "You already have an event at this time",
+                result: null
+            });
+        }
+
         let schedule = {
             ...req.body,
             user

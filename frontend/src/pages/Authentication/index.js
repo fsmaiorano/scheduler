@@ -16,6 +16,10 @@ class Authentication extends Component {
     error: null,
   };
 
+  componentDidMount() {
+    sessionStorage.removeItem('user');
+  }
+
   doLogin = async (e) => {
     try {
       e.preventDefault();

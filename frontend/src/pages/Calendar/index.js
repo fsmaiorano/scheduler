@@ -59,16 +59,21 @@ class Calendar extends Component {
       title,
       location,
       date: selectedDate,
-      hour: selectedTime,
+      hour: selectedTime.substring(0, 5),
     };
 
     const response = await add(newEvent);
-    const { events, selectedEvents } = this.state;
-    events.push(response.data.result);
-    selectedEvents.push(response.data.result);
-    this.setState({
-      events, selectedEvents, title: '', location: '',
-    });
+
+    if (response.data.success) {
+      const { events, selectedEvents } = this.state;
+      events.push(response.data.result);
+      selectedEvents.push(response.data.result);
+      this.setState({
+        events, selectedEvents, title: '', location: '',
+      });
+    } else {
+      this.setState({ error: response.data.msg });
+    }
   };
 
   destroyEvent = async (event) => {
