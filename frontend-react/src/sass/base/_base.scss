@@ -1,0 +1,25 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+    background-color: $color-background;
+    font-size: 62.5%;
+}
+
+body {
+    text-rendering: optimizeLegibility !important;
+    -webkit-font-smoothing: antialiase !important;
+
+    box-sizing: border-box;
+    padding: 3rem;
+}
+
+::selection {
+    background-color: $color-tertiary;
+    color:white;
+}
