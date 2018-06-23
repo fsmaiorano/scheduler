@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "c6c8f883-1a73-4fa3-8b56-759fb33fffb2",
+		"_postman_id": "b8fc744c-c3e8-44af-a5c8-57bc4c84db01",
 		"name": "Scheduler",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -98,6 +98,75 @@
 		},
 		{
 			"name": "Add Event",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViMjEyYzVjMDI2YWJjYjUyNGM1MWY3NSIsImlhdCI6MTUyODkwMDcyMSwiZXhwIjoxNTI4OTg3MTIxfQ.T4nO5ihWgEeM9GwWJDgoq04Dk5RWe3h8mQXUlsda7Ko"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"title\": \"teste\",\n\t\"location\": \"Rua 13\",\n\t\"date\": \"2017/05/01\",\n\t\"hour\": \"17:30\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/calendar/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"calendar",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Event",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjViMTljZWU4ZGI0NzM0MjM0NDMwYWU4YiIsImlhdCI6MTUyOTUzMjU3NywiZXhwIjoxNTI5NjE4OTc3fQ.HI4RAnpp0KIAx9LgaD9QlG4iEc-ufobOcHA772mAoSc"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": \"teste\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/calendar/delete/5b2ae0524d55ae2a68f43b08",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"calendar",
+						"delete",
+						"5b2ae0524d55ae2a68f43b08"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Events",
 			"request": {
 				"method": "POST",
 				"header": [

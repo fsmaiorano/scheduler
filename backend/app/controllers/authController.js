@@ -1,10 +1,11 @@
 const mongoose = require("mongoose");
 
 const User = mongoose.model("User");
+const sendMail = require('../services/mailer');
 
 module.exports = {
     async signup(req, res, next) {
-        const { email, password } = req.body;
+        const { email, name, username } = req.body;
 
         if (await User.findOne({ email })) {
             return res.status(200).json({
@@ -15,6 +16,18 @@ module.exports = {
         }
 
         const user = await User.create(req.body);
+
+        sendMail({
+            from: "Scheduler",
+            to: email,
+            subject: `Bem vindo, ${name}`,
+            html: "Sua conta foi criada com sucesso! Seja bem vindo!",
+            //template: 'auth/register',
+            context: {
+                name: name,
+                username: username
+            }
+        });
 
         return res.json({
             success: true,
