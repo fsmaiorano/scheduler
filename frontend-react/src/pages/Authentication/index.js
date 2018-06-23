@@ -42,8 +42,8 @@ class Authentication extends Component {
                             Senha
                         </label>
                     </div>
-                    <div className="form__group">
-                        <button className="btn">Entrar</button>
+                    <div className="form__group u-float-right">
+                        <button className="btn btn--primary">Entrar</button>
                     </div>
                 </form>
             </section>

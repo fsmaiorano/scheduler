@@ -1,19 +1,16 @@
 .btn {
+    position: relative;
     &,
     &:link,
     &:visited {
       text-transform: uppercase;
       text-decoration: none;
-      //   padding: 15px 40px;
       padding: 1.5rem 4rem;
       display: inline-block;
-      //   border-radius: 100px;
       border-radius: 10rem;
       transition: all 0.2s;
       position: relative;
       font-size: $default-font-size;
-
-      // Alteração para <button>
       border: none;
       cursor: pointer;
     }
@@ -34,4 +31,37 @@
         transform: translateY(-1px);
         box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
       }
+
+      &--primary {
+          color: $color-primary;
+
+          &:hover {
+              color: $color-secundary;
+          }
+      }
+
+      .btn-text {
+        &:link,
+        &:visited {
+          font-size: $default-font-size;
+          color: $color-primary;
+          display: inline-block;
+          text-decoration: none;
+          padding: 3px;
+          border-bottom: 1px solid $color-primary;
+          transition: all 0.2s;
+        }
+
+        &:hover {
+          background-color: $color-primary;
+          color: $color-white;
+          box-shadow: 0 1rem 2rem rgba($color-black, 0.15);
+          transform: translateY(-2px);
+        }
+
+        &:active {
+          box-shadow: 0 0.5rem 1rem rgba($color-black, 0.15);
+          transform: translateY(0);
+        }
+    }
 }
