@@ -18,7 +18,8 @@
         display: block;
         border-bottom: 3px solid transparent;
 
-        &::-webkit-input-placeholder {
+        &::-webkit-input-placeholder,
+        &::-ms-input-placeholder {
             color: $color-gray-dark-2;
         }
 

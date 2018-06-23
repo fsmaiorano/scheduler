@@ -3,18 +3,47 @@ import React, { Component } from "react";
 class Authentication extends Component {
     render() {
         return (
-            <section className="section-authentication">
+            <section className="authentication">
+                <div className="bg-video">
+                    <video className="bg-video__content" autoPlay muted loop>
+                        <source src="/assets/videos/Office-Day.mp4" type="video/mp4" />
+                        <source src="assets/videos/Office-Day.webm" type="video/webm" />
+                        Your browser is not supported!
+                    </video>
+                </div>
+
                 <form className="form">
                     <div className="u-center-text u-margin-bottom-small">
                         <h2 className="heading-secondary">Scheduler</h2>
                     </div>
-                    <div class="form__group">
-                        <input id="email" type="email" class="form__input" placeholder="E-mail" required autocomplete="off"/>
-                        <label for="email" class="form__label">E-mail</label>
+                    <div className="form__group">
+                        <input
+                            id="email"
+                            type="email"
+                            className="form__input"
+                            placeholder="E-mail"
+                            required
+                            autoComplete="off"
+                        />
+                        <label htmlFor="email" className="form__label">
+                            E-mail
+                        </label>
                     </div>
-                     <div class="form__group">
-                        <input id="password" type="text" class="form__input" placeholder="Senha" required autocomplete="off" />
-                        <label for="password" class="form__label">Senha</label>
+                    <div className="form__group">
+                        <input
+                            id="password"
+                            type="text"
+                            className="form__input"
+                            placeholder="Senha"
+                            required
+                            autoComplete="off"
+                        />
+                        <label htmlFor="password" className="form__label">
+                            Senha
+                        </label>
+                    </div>
+                    <div className="form__group">
+                        <button className="btn">Entrar</button>
                     </div>
                 </form>
             </section>
