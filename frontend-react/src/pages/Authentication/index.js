@@ -107,6 +107,7 @@ class Authentication extends Component {
                                 "Entrar"
                             )}
                         </button>
+                        <a className="" href="#">ou criar uma nova conta</a>
                     </div>
                 </form>
             </section>
