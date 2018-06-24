@@ -28,7 +28,7 @@
         }
 
         &:focus:invalid {
-            border-bottom: 3px solid $color-secundary;
+            border-bottom: 3px solid $color-secondary;
         }
 
         &:focus {
@@ -45,6 +45,7 @@
         margin-top: 0.7rem;
         display: block;
         transition: all 0.3s;
+        color: $color-secondary;
     }
 
     &__input:placeholder-shown + &__label {
