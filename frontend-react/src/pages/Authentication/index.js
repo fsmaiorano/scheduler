@@ -1,7 +1,8 @@
 import React, { Component } from "react";
+import Toastr from 'toastr';
 import { PropTypes } from "prop-types";
 
-import { signin } from "../../services/authentication"
+import { signin } from "../../services/authentication";
 
 class Authentication extends Component {
     static propTypes = {
@@ -11,10 +12,8 @@ class Authentication extends Component {
     state = {
         email: "",
         password: "",
-        validations: {
-            isLoading: false,
-            isError: false
-        }
+        isLoading: false,
+        isError: false
     };
 
     doLogin = async e => {
@@ -38,9 +37,11 @@ class Authentication extends Component {
                 // this.props.history.push("/calendar");
             } else {
                 this.setState({ isLoading: false });
+                Toastr.warning(data.msg);
             }
             this.setState({ isLoading: false });
         } catch (error) {
+            Toastr.warning(error.msg);
             this.setState({ isLoading: false });
         }
     };
@@ -99,8 +100,12 @@ class Authentication extends Component {
                         </label>
                     </div>
                     <div className="form__group u-float-right">
-                        <button type="submit" className="btn btn--primary">
-                            Entrar
+                        <button type="submit" className="btn btn--primary btn--loading">
+                            {this.state.isLoading ? (
+                                <i className="fa fa-spinner fa-pulse" />
+                            ) : (
+                                "Entrar"
+                            )}
                         </button>
                     </div>
                 </form>
