@@ -16,7 +16,7 @@ class Authentication extends Component {
                     <div className="u-center-text u-margin-bottom-small">
                         <h2 className="heading-secondary">Scheduler</h2>
                     </div>
-                    <div className="form__group">
+                    <div className="form__group center">
                         <input
                             id="email"
                             type="email"
@@ -29,7 +29,7 @@ class Authentication extends Component {
                             E-mail
                         </label>
                     </div>
-                    <div className="form__group">
+                    <div className="form__group center">
                         <input
                             id="password"
                             type="text"
