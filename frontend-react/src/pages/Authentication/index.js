@@ -25,7 +25,7 @@ class Authentication extends Component {
 
             const { data } = await signin({
                 email: email,
-                passord: password
+                password: password
             });
 
             if (data.success) {
