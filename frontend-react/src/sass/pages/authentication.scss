@@ -1,3 +1,19 @@
 .authentication {
+    &__new-account {
+        &:link,
+        &:visited {
+            color: $color-secondary;
+            float: right;
+            margin-right: 1rem;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
 
+        &:hover {
+            box-shadow: 0 1rem 2rem rgba($color-black, 0.15);
+        }
+
+        &:active {
+        }
+    }
 }
