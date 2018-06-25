@@ -48,7 +48,7 @@ class Authentication extends Component {
 
     render() {
         return (
-            <section className="authentication">
+            <section className="section-authentication">
                 <div className="bg-video">
                     <video className="bg-video__content" autoPlay muted loop>
                         <source
@@ -107,7 +107,7 @@ class Authentication extends Component {
                                 "Entrar"
                             )}
                         </button>
-                        <a className="authentication__new-account" href="#">Criar uma nova conta</a>
+                        <a className="section-authentication__link" href="/account">Criar uma nova conta</a>
                     </div>
                 </form>
             </section>

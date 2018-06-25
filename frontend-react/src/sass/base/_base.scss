@@ -1,13 +1,12 @@
 *,
 *::after,
 *::before {
-  margin: 0;
-  padding: 0;
-  box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
 }
 
 html {
-    // background-color: $color-background;
     font-size: 62.5%;
 }
 
@@ -17,9 +16,19 @@ body {
 
     box-sizing: border-box;
     padding: 3rem;
+
+    // background-image: linear-gradient(
+    //     to right bottom,
+    //     $color-primary,
+    //     $color-secondary
+    // );
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
 }
 
 ::selection {
     background-color: $color-tertiary;
-    color:white;
+    color: white;
 }
