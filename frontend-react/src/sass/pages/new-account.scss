@@ -1,12 +1,21 @@
 .section-new-account {
 
     .form {
-        width: 70rem;
         height: 60rem;
         padding: 5rem;
         border-radius: 10px;
         background-color: $color-primary;
         box-shadow: 20rem 0rem 13rem 100rem rgba($color-secondary, 0.7);
+
+        min-width: 50rem;
+
+        @include respond(tab-port) {
+            height: 58rem;
+        }
+
+        @include respond(phone) {
+            min-width: 30rem;
+        }
     }
 
     &__link {
