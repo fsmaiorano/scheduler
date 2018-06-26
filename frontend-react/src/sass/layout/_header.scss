@@ -1,0 +1,19 @@
+.header {
+    display: flex;
+    font-size: 1.8rem;
+    height: 5rem;
+    background-color: aqua;
+    align-items: center;
+    justify-content: center;
+
+    &__nav {
+        background-color: red;
+        height: 100%;
+        width: 5rem;
+    }
+
+    &__box {
+        background-color: green;
+    }
+
+}
