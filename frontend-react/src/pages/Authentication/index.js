@@ -42,7 +42,7 @@ class Authentication extends Component {
                     JSON.stringify(data.result.user)
                 );
                 sessionStorage.setItem("token", `Bearer ${data.result.token}`);
-                // this.props.history.push("/calendar");
+                this.props.history.push("/calendar");
             } else {
                 this.setState({ isLoading: false });
                 Toastr.warning(data.msg);
