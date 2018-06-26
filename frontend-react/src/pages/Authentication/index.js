@@ -16,6 +16,14 @@ class Authentication extends Component {
         isError: false
     };
 
+    componentDidMount() {
+        const user = sessionStorage.getItem("user");
+
+        if(user === "") {
+            Toastr.success("Usuário criado com sucesso");
+        }
+    }
+
     doLogin = async e => {
         try {
             e.preventDefault();
@@ -41,7 +49,11 @@ class Authentication extends Component {
             }
             this.setState({ isLoading: false });
         } catch (error) {
-            Toastr.warning(error.msg);
+            if(!error) {
+                Toastr.error("Server Offline");
+            }
+            Toastr.error(error.msg);
+            sessionStorage.setItem("user", "");
             this.setState({ isLoading: false });
         }
     };

@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import Toastr from "toastr";
+
+import { signup } from '../../../services/authentication';
 
 class NewAccount extends Component {
     state = {
@@ -6,7 +9,27 @@ class NewAccount extends Component {
     };
 
     createAccount = async e => {
-        e.preventDefault();
+        try {
+            e.preventDefault();
+            this.setState({ isLoading: true });
+            const { data } = await signup({
+                name: this.state.name,
+                username: this.state.username,
+                email: this.state.email,
+                password: this.state.password
+            });
+            if (data.success) {
+                sessionStorage.setItem("user", "");
+                sessionStorage.setItem("token", `Bearer ${data.result.token}`);
+                this.props.history.goBack();
+            } else {
+                this.setState({ error: data.msg });
+            }
+            this.setState({ isLoading: false });
+        } catch (error) {
+            this.setState({ isLoading: false });
+            Toastr.error(error.msg);
+        }
     };
 
     render() {
