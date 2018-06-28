@@ -2,17 +2,20 @@
     display: flex;
     font-size: 1.8rem;
     height: 5rem;
-    background-color: aqua;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
+    background-color: #94b1d2;
 
     &__nav {
-        background-color: red;
         height: 100%;
         width: 5rem;
     }
 
     &__box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
         background-color: green;
     }
 

@@ -98,7 +98,7 @@ class Authentication extends Component {
                     <div className="form__group center">
                         <input
                             id="password"
-                            type="text"
+                            type="password"
                             className="form__input"
                             placeholder="Senha"
                             required
