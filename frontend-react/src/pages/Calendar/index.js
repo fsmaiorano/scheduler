@@ -15,6 +15,7 @@ class Calendar extends Component {
         selectedDate: new Date().toLocaleDateString(),
         selectedTime: new Date().toLocaleTimeString(),
         selectedEvents: [],
+        showEvents: true,
         title: "",
         location: "",
         events: []
@@ -26,6 +27,10 @@ class Calendar extends Component {
 
     onChangeDate = date => {
         const formatedDate = date.toLocaleDateString();
+
+        if(!this.state.showEvents ) {
+            this.setState({ showEvents: true })
+        }
 
         if (this.state.events.length > 0) {
             const events = this.state.events.filter(
@@ -117,68 +122,76 @@ class Calendar extends Component {
                     />
                 </div>
                 <div className="timepicker">
-                    <TimePicker time={this.state.selectedTime} theme="classic" onTimeChange={this.onTimeChange.bind(this)} />
+                    <TimePicker
+                        time={this.state.selectedTime}
+                        theme="classic"
+                        onTimeChange={this.onTimeChange.bind(this)}
+                    />
+                </div>
+                <div className="actionHandler">
+                    <button className="btn" onClick={() => this.setState({ showEvents: !this.state.showEvents })}>{this.state.showEvents ? "Novo evento" : "Cancelar"}</button>
                 </div>
 
-                <div className="events">
-                {this.state.selectedEvents.length > 0 ? (
-                    <ListEvents
-                        events={this.state.selectedEvents}
-                        destroy={this.destroyEvent}
-                    />
-                ) : null}
-            </div>
-
-                <form
-                    className="form u-margin-top-medium"
-                    onSubmit={this.addEvent}
-                >
-                    <div className="form__group center">
-                        <input
-                            id="title"
-                            type="text"
-                            className="form__input"
-                            placeholder="Título"
-                            required
-                            value={this.state.title}
-                            autoComplete="off"
-                            onChange={e =>
-                                this.setState({ title: e.target.value })
-                            }
-                        />
-                        <label htmlFor="title" className="form__label">
-                            Título
-                        </label>
+                {this.state.showEvents ? (
+                    <div className="events">
+                        {this.state.selectedEvents.length > 0 ? (
+                            <ListEvents
+                                events={this.state.selectedEvents}
+                                destroy={this.destroyEvent}
+                            />
+                        ) : null}
                     </div>
-                    <div className="form__group center">
-                        <input
-                            id="location"
-                            type="text"
-                            className="form__input"
-                            placeholder="Localização"
-                            required
-                            value={this.state.location}
-                            autoComplete="off"
-                            onChange={e =>
-                                this.setState({ location: e.target.value })
-                            }
-                        />
-                        <label htmlFor="location" className="form__label">
-                            Location
-                        </label>
-                    </div>
-                    <button
-                        type="submit"
-                        className="btn btn--primary u-float-right"
+                ) : (
+                    <form
+                        className="form u-margin-top-medium"
+                        onSubmit={this.addEvent}
                     >
-                        {this.state.isLoading ? (
-                            <i className="fa fa-spinner fa-pulse" />
-                        ) : (
-                            "Cadastrar"
-                        )}
-                    </button>
-                </form>
-
+                        <div className="form__group center">
+                            <input
+                                id="title"
+                                type="text"
+                                className="form__input"
+                                placeholder="Título"
+                                required
+                                value={this.state.title}
+                                autoComplete="off"
+                                onChange={e =>
+                                    this.setState({ title: e.target.value })
+                                }
+                            />
+                            <label htmlFor="title" className="form__label">
+                                Título
+                            </label>
+                        </div>
+                        <div className="form__group center">
+                            <input
+                                id="location"
+                                type="text"
+                                className="form__input"
+                                placeholder="Localização"
+                                required
+                                value={this.state.location}
+                                autoComplete="off"
+                                onChange={e =>
+                                    this.setState({ location: e.target.value })
+                                }
+                            />
+                            <label htmlFor="location" className="form__label">
+                                Location
+                            </label>
+                        </div>
+                        <button
+                            type="submit"
+                            className="btn btn--primary u-float-right"
+                        >
+                            {this.state.isLoading ? (
+                                <i className="fa fa-spinner fa-pulse" />
+                            ) : (
+                                "Cadastrar"
+                            )}
+                        </button>
+                    </form>
+                )}
             </section>
         );
     }

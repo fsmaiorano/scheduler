@@ -19,5 +19,12 @@
 
     .events {
         display: flex;
+        justify-content: center;
+    }
+
+    .actionHandler {
+        position: absolute;
+        right: 2rem;
+        top: 73rem;
     }
 }
