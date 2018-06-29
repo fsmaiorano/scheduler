@@ -1,6 +1,7 @@
 .btn {
     position: relative;
     display: block;
+    min-width: 15rem;
 
     &,
     &:link,
@@ -40,10 +41,6 @@
           &:hover {
               color: $color-secondary;
           }
-      }
-
-      &--loading {
-        width: 15rem;
       }
 
     //   .btn-text {

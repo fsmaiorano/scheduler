@@ -106,7 +106,7 @@ class NewAccount extends Component {
                     <div className="form__group u-float-right">
                         <button
                             type="submit"
-                            className="btn btn--primary btn--loading"
+                            className="btn btn--primary"
                         >
                             {this.state.isLoading ? (
                                 <i className="fa fa-spinner fa-pulse" />

@@ -1,8 +1,23 @@
 .section-calendar {
     height: 80rem;
+    position: relative;
     margin: 0 auto;
     max-width: 100rem;
     border-radius: 10px;
     background-color: $color-primary;
     box-shadow: 20rem 0rem 13rem 100rem rgba($color-secondary, 0.7);
+
+    .calendar {
+        display: flex;
+        justify-content: center;
+    }
+
+    .timepicker {
+        width: 30rem;
+        margin: 2rem auto;
+    }
+
+    .events {
+        display: flex;
+    }
 }

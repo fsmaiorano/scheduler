@@ -17,7 +17,7 @@ module.exports = {
 
         let events = await Calendar.find({ user: user });
 
-        isSameSchedule = events.filter(ev => ev.hour === req.body.hour);
+        isSameSchedule = events.filter(ev => ev.hour === req.body.hour && ev.date === req.body.date);
 
         if (isSameSchedule.length > 0) {
             return res.status(200).json({

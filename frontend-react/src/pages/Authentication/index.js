@@ -112,7 +112,7 @@ class Authentication extends Component {
                         </label>
                     </div>
                     <div className="form__group u-float-right">
-                        <button type="submit" className="btn btn--primary btn--loading">
+                        <button type="submit" className="btn btn--primary">
                             {this.state.isLoading ? (
                                 <i className="fa fa-spinner fa-pulse" />
                             ) : (
