@@ -1,16 +1,16 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import { PropTypes } from 'prop-types';
 
 const ListEvents = ({ events, destroy }) => (
-  <div>
+    <Fragment>
     {
         events && events.map(ev => (
-          <div key={ev._id}>
-            {ev.title} <button onClick={() => destroy(ev)}> x</button>
+          <div key={ev._id} className="calendar-item">
+            {ev.title} <button className="calendar-item__delete" onClick={() => destroy(ev)}> x</button>
           </div>
         ))
     }
-  </div>
+    </Fragment>
 );
 
 ListEvents.prototype = {

@@ -12,14 +12,26 @@
         justify-content: center;
     }
 
+    .calendar-item{
+        display: flex;
+        padding: 1rem 14rem;
+        font-size: 1.5rem;
+        justify-content: center;
+
+        &__delete {
+            border: none;
+            width: 2rem;
+             margin-left: 1rem;
+        }
+    }
+
     .timepicker {
         width: 30rem;
         margin: 2rem auto;
     }
 
     .events {
-        display: flex;
-        justify-content: center;
+
     }
 
     .actionHandler {
@@ -27,4 +39,6 @@
         right: 2rem;
         top: 73rem;
     }
+
+
 }
