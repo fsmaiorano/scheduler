@@ -15,6 +15,7 @@ routes.post("/update", authMiddleware, controllers.profileController.update);
 
 // Calendar
 routes.post("/calendar/add", authMiddleware, controllers.calendarController.add);
+routes.post("/calendar/share", authMiddleware, controllers.calendarController.share);
 routes.get("/calendar/getEvents", authMiddleware, controllers.calendarController.getEvents);
 routes.get("/calendar/delete/:id", authMiddleware, controllers.calendarController.delete);
 

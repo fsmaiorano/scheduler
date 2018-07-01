@@ -3,7 +3,7 @@ import ReactCalendar from "react-calendar";
 import Toastr from "toastr";
 import TimePicker from "react-times";
 
-import { add, getEvents, destroy } from "../../services/calendar";
+import { add, getEvents, destroy, shareEvent } from "../../services/calendar";
 
 import "../../../node_modules/react-times/css/material/default.css";
 import "../../../node_modules/react-times/css/classic/default.css";
@@ -100,6 +100,17 @@ class Calendar extends Component {
         }
     };
 
+    shareEvent = async event => {
+
+        const share = {
+            "event": event,
+            "email": "fsmaiorano@gmail.com"
+        }
+
+        const response = await shareEvent(share);
+        console.log(response);
+    }
+
     onTimeChange(options) {
         this.setState({ selectedTime: `${options.hour}:${options.minute}` });
     }
@@ -138,6 +149,7 @@ class Calendar extends Component {
                             <ListEvents
                                 events={this.state.selectedEvents}
                                 destroy={this.destroyEvent}
+                                share={this.shareEvent}
                             />
                         ) : null}
                     </div>
