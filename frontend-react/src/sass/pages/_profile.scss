@@ -1,0 +1,17 @@
+.section-profile {
+    height: 50rem;
+    position: relative;
+    margin: 0 auto;
+    max-width: 100rem;
+    border-radius: 10px;
+    background-color: $color-primary;
+    box-shadow: 20rem 0rem 13rem 100rem rgba($color-secondary, 0.7);
+
+    .form {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        min-width: 50rem;
+    }
+}

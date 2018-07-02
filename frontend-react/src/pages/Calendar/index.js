@@ -28,8 +28,8 @@ class Calendar extends Component {
     onChangeDate = date => {
         const formatedDate = date.toLocaleDateString();
 
-        if(!this.state.showEvents ) {
-            this.setState({ showEvents: true })
+        if (!this.state.showEvents) {
+            this.setState({ showEvents: true });
         }
 
         if (this.state.events.length > 0) {
@@ -101,15 +101,14 @@ class Calendar extends Component {
     };
 
     shareEvent = async event => {
-
         const share = {
-            "event": event,
-            "email": "fsmaiorano@gmail.com"
-        }
+            event: event,
+            email: "fsmaiorano@gmail.com"
+        };
 
         const response = await shareEvent(share);
         console.log(response);
-    }
+    };
 
     onTimeChange(options) {
         this.setState({ selectedTime: `${options.hour}:${options.minute}` });
@@ -121,7 +120,9 @@ class Calendar extends Component {
                 <header className="header">
                     <nav className="header__nav">
                         <div className="header__box">
-                            <span>User</span>
+                            <a href="/profile" class="">
+                                User
+                            </a>
                         </div>
                     </nav>
                 </header>
@@ -132,15 +133,29 @@ class Calendar extends Component {
                         minDate={new Date()}
                     />
                 </div>
-                <div className="timepicker">
-                    <TimePicker
-                        time={this.state.selectedTime}
-                        theme="classic"
-                        onTimeChange={this.onTimeChange.bind(this)}
-                    />
-                </div>
+                {!this.state.showEvents ? (
+                    <div className="timepicker">
+                        <TimePicker
+                            time={this.state.selectedTime}
+                            theme="classic"
+                            onTimeChange={this.onTimeChange.bind(this)}
+                        />
+                    </div>
+                ) : (
+                    <div />
+                )}
+
                 <div className="actionHandler">
-                    <button className="btn" onClick={() => this.setState({ showEvents: !this.state.showEvents })}>{this.state.showEvents ? "Novo evento" : "Cancelar"}</button>
+                    <button
+                        className="btn"
+                        onClick={() =>
+                            this.setState({
+                                showEvents: !this.state.showEvents
+                            })
+                        }
+                    >
+                        {this.state.showEvents ? "Novo evento" : "Cancelar"}
+                    </button>
                 </div>
 
                 {this.state.showEvents ? (
