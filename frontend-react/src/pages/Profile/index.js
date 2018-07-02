@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { updateUser } from "../../services/profile";
+import Toastr from "toastr";
 
 class Profile extends Component {
     state = {
@@ -42,10 +43,11 @@ class Profile extends Component {
                 sessionStorage.setItem("user", JSON.stringify(user));
                 this.props.history.goBack();
             } else {
-                this.setState({ isLoading: false, error: response.data.msg });
+                Toastr.error(response.data.msg);
             }
         } catch (error) {
             this.setState({ isLoading: false });
+            Toastr.error("Tente novamente mais tarde");
         }
     };
 

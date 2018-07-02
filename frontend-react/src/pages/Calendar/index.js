@@ -121,7 +121,7 @@ class Calendar extends Component {
                     <nav className="header__nav">
                         <div className="header__box">
                             <a href="/profile" class="">
-                                User
+                                Usuário
                             </a>
                         </div>
                     </nav>
@@ -144,19 +144,6 @@ class Calendar extends Component {
                 ) : (
                     <div />
                 )}
-
-                <div className="actionHandler">
-                    <button
-                        className="btn"
-                        onClick={() =>
-                            this.setState({
-                                showEvents: !this.state.showEvents
-                            })
-                        }
-                    >
-                        {this.state.showEvents ? "Novo evento" : "Cancelar"}
-                    </button>
-                </div>
 
                 {this.state.showEvents ? (
                     <div className="events">
@@ -207,17 +194,46 @@ class Calendar extends Component {
                                 Location
                             </label>
                         </div>
-                        <button
-                            type="submit"
-                            className="btn btn--primary u-float-right"
-                        >
-                            {this.state.isLoading ? (
-                                <i className="fa fa-spinner fa-pulse" />
-                            ) : (
-                                "Cadastrar"
-                            )}
-                        </button>
+                        <div className="form__group-buttons">
+                            <button
+                                className="btn"
+                                onClick={() =>
+                                    this.setState({
+                                        showEvents: !this.state.showEvents
+                                    })
+                                }
+                            >
+                                Cancelar
+                            </button>
+                            <button
+                                type="submit"
+                                className="btn btn--primary u-float-right"
+                            >
+                                {this.state.isLoading ? (
+                                    <i className="fa fa-spinner fa-pulse" />
+                                ) : (
+                                    "Cadastrar"
+                                )}
+                            </button>
+                        </div>
                     </form>
+                )}
+
+                {this.state.showEvents ? (
+                    <div className="actionHandler">
+                        <button
+                            className="btn"
+                            onClick={() =>
+                                this.setState({
+                                    showEvents: !this.state.showEvents
+                                })
+                            }
+                        >
+                            Novo evento
+                        </button>
+                    </div>
+                ) : (
+                    <div />
                 )}
             </section>
         );

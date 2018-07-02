@@ -3,11 +3,16 @@
     min-width: 50rem;
 
     @include respond(tab-port) {
-        min-width: 30rem;
+        min-width: 35rem;
     }
 
     &__group:not(:last-child) {
         margin-bottom: 2rem;
+    }
+
+    &__group-buttons {
+        display: flex;
+        justify-content: space-between;
     }
 
     &__input {

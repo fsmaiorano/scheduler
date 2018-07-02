@@ -16,7 +16,17 @@
         justify-content: center;
         align-items: center;
         height: 100%;
-        background-color: green;
+
+        & a {
+            color: $color-secondary;
+            text-decoration: none;
+            margin-right: 7rem;
+
+            &:visited,
+            &:active {
+                color: $color-secondary;
+            }
+        }
     }
 
 }
