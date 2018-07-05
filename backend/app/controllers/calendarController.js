@@ -18,7 +18,7 @@ module.exports = {
 
         let events = await Calendar.find({ user: user });
 
-        isSameSchedule = events.filter(
+        const isSameSchedule = events.filter(
             ev => ev.hour === req.body.hour && ev.date === req.body.date
         );
 
@@ -120,6 +120,7 @@ module.exports = {
                 result: null
             });
         } catch (error) {
+            /* istanbul ignore next */
             return res.status(200).json({
                 success: false,
                 msg: "This event cannot be shared. Try again.",

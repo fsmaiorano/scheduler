@@ -14,6 +14,13 @@ factory.define('User', mongoose.model('User'), {
   password: faker.internet.password(),
 });
 
+factory.define('Calendar', mongoose.model('Calendar'), {
+    "title": faker.name.jobTitle(),
+    "location": faker.locale,
+    "date": faker.date.future(),
+    "hour": "17:30"
+});
+
 // factory.define('Calendar', mongoose.model('Calendar'), {
 //   title: faker.lorem.sentence(),
 //   location: faker.lorem.sentence(),

@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "test": "set NODE_ENV=test&&nyc mocha __tests__/**/*.test.js --exit",
+        "test": "nyc mocha __tests__/**/*.test.js --exit --env.NODE_ENV=test",
         "start": "nodemon index.js"
     },
     "keywords": [],
