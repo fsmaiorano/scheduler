@@ -60,7 +60,7 @@ describe("Create Event", () => {
 
         await Calendar.create(schedule_1);
 
-        let events = await Calendar.find({ user: newUser.body.result.user});
+        let events = await Calendar.find({ user: newUser.body.result.user });
 
         const filteredEvents = events.filter(
             ev => ev.hour === schedule_2.hour && ev.date === schedule_2.date

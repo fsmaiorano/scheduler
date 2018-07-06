@@ -37,14 +37,6 @@ module.exports = {
 
         let newSchedule = await Calendar.create(schedule);
 
-        if (newSchedule.errors) {
-            return res.status(200).json({
-                success: false,
-                msg: "Outch!",
-                result: newSchedule.errors
-            });
-        }
-
         return res.status(200).json({
             success: true,
             msg: "Schedule created with success",
