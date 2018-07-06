@@ -6,42 +6,51 @@ const sendMail = require("../services/mailer");
 
 module.exports = {
     async add(req, res, next) {
-        let user = await User.findById(req.userId);
+        try {
+            let user = await User.findById(req.userId);
 
-        if (!user) {
+            if (!user) {
+                return res.status(200).json({
+                    success: false,
+                    msg: "Token invalid",
+                    result: null
+                });
+            }
+
+            let events = await Calendar.find({ user: user });
+
+            const isSameSchedule = events.filter(
+                ev => ev.hour === req.body.hour && ev.date === req.body.date
+            );
+
+            if (isSameSchedule.length > 0) {
+                return res.status(200).json({
+                    success: false,
+                    msg: "You already have an event at this time",
+                    result: null
+                });
+            }
+
+            let schedule = {
+                ...req.body,
+                user
+            };
+
+            let newSchedule = await Calendar.create(schedule);
+
+            return res.status(200).json({
+                success: true,
+                msg: "Schedule created with success",
+                result: newSchedule
+            });
+        } catch (error) {
+            /* istanbul ignore next */
             return res.status(200).json({
                 success: false,
-                msg: "Token invalid",
+                msg: "This event cannot be inserted. Try again.",
                 result: null
             });
         }
-
-        let events = await Calendar.find({ user: user });
-
-        const isSameSchedule = events.filter(
-            ev => ev.hour === req.body.hour && ev.date === req.body.date
-        );
-
-        if (isSameSchedule.length > 0) {
-            return res.status(200).json({
-                success: false,
-                msg: "You already have an event at this time",
-                result: null
-            });
-        }
-
-        let schedule = {
-            ...req.body,
-            user
-        };
-
-        let newSchedule = await Calendar.create(schedule);
-
-        return res.status(200).json({
-            success: true,
-            msg: "Schedule created with success",
-            result: newSchedule
-        });
     },
 
     async getEvents(req, res, next) {
