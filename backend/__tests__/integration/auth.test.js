@@ -54,14 +54,6 @@ describe('Authentication', () => {
 
   describe('Sign in', () => {
     it('it should be able to authenticate with valid credentials', async () => {
-
-      // const user = await User.create({
-      //   name: 'Fábio',
-      //   username: 'fsmaiorano',
-      //   email: 'fsmaiorano@gmail.com',
-      //   password: '123'
-      // });
-
       const user = await factory.create('User', {
         password: '123'
       });
@@ -85,14 +77,6 @@ describe('Authentication', () => {
     });
 
     it('it should not be able to signin with wrong password', async () => {
-
-      // const user = await User.create({
-      //   name: 'Fábio',
-      //   username: 'fsmaiorano',
-      //   email: 'fsmaiorano@gmail.com',
-      //   password: '123456'
-      // });
-
       const user = await factory.create('User', {
         password: '123456'
       });

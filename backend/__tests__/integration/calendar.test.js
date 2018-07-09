@@ -36,6 +36,29 @@ describe("Create Event", () => {
         expect(response).to.have.property("_id");
     });
 
+    it("Should return invalid token", async () => {
+        const user = await factory.attrs("User");
+        const newUser = await chai
+            .request(app)
+            .post("/api/signup")
+            .send(user);
+
+        let schedule_1 = {
+            title: faker.name.jobTitle(),
+            location: faker.locale,
+            date: "31/12/2020",
+            hour: "17:30",
+            user: newUser.body.result.user
+        };
+
+        const addEvent = await chai
+        .request(app)
+        .post("/api/calendar/add")
+        .send(schedule_1);
+
+        expect(addEvent.body.error).to.be.equal("No token provided");
+    });
+
     it("Should be reject two events in the same time", async () => {
         const user = await factory.attrs("User");
         const newUser = await chai
@@ -59,7 +82,19 @@ describe("Create Event", () => {
             user: newUser.body.result.user
         };
 
-        await Calendar.create(schedule_1);
+        // await Calendar.create(schedule_1);
+
+       await chai
+        .request(app)
+        .post("/api/calendar/add")
+        .set("Authorization", `Bearer ${newUser.body.result.token}`)
+        .send(schedule_1);
+
+        await chai
+        .request(app)
+        .post("/api/calendar/add")
+        .set("Authorization", `Bearer ${newUser.body.result.token}`)
+        .send(schedule_2);
 
         let events = await Calendar.find({ user: newUser.body.result.user });
 
@@ -105,5 +140,46 @@ describe("Create Event", () => {
             _id: id
         });
         expect(response).to.be.null;
+    });
+
+    it("Should share an event", async () => {
+        let mail = await sendMail({
+            from: "Scheduler",
+            to: "email",
+            subject: "Lembrete",
+            html: `message`,
+            context: {
+                name: "Scheduler",
+                username: "Scheduler"
+            }
+        });
+
+        expect(mail).to.be.undefined;
+    });
+
+    it("Should be return events of an user", async () => {
+        const user = await factory.attrs("User");
+        user.password = "123";
+        const newUser = await chai
+            .request(app)
+            .post("/api/signup")
+            .send(user);
+
+        let schedule_1 = {
+            title: faker.name.jobTitle(),
+            location: faker.locale,
+            date: "31/12/2020",
+            hour: "17:30",
+            user: newUser.body.result.user
+        };
+
+        await Calendar.create(schedule_1);
+
+        const events = await chai
+            .request(app)
+            .get("/api/calendar/getEvents")
+            .set("Authorization", `Bearer ${newUser.body.result.token}`);
+
+        expect(events.body.success).to.be.true;
     });
 });
