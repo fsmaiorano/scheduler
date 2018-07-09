@@ -18,6 +18,6 @@ app.use("/api", require("./app/routes"));
 
 app.use(cors);
 
-app.listen(serverConfig.port);
+app.listen(process.env.PORT || serverConfig.port);
 
 module.exports = app;
