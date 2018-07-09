@@ -1,2 +1,5 @@
 frontend/scheduler/node_modules
 backend/node_modules
+backend/.env
+backend/__tests__/coverage
+backend/.nyc_output

@@ -84,23 +84,26 @@ module.exports = {
                 msg: "Event not found",
                 result: null
             });
-        } else if (deleteEvent.errors) {
+        }
+
+        if (deleteEvent.errors) {
             return res.status(200).json({
                 success: false,
                 msg: "The event can't be removed",
                 result: null
             });
-        } else {
-            return res.status(200).json({
-                success: true,
-                msg: "Event was removed with success",
-                result: null
-            });
         }
+
+        return res.status(200).json({
+            success: true,
+            msg: "Event was removed with success",
+            result: null
+        });
     },
 
     async share(req, res, next) {
         try {
+            /* istanbul ignore next */
             const { event, email } = req.body;
 
             await sendMail({
